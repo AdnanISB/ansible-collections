@@ -1,0 +1,101 @@
+# group_vars/dbserve
+# group_vars/dbservers.yml
+# Treat Amazon Linux as RedHat so role loads RedHat defaults
+ansible_os_family: RedHat
+# MySQL/MariaDB packages
+mysql_packages:
+  - mariadb
+  - mariadb-server
+  - mariadb-devel
+  - mariadb-libs
+  - mariadb-client
+
+# MySQL service/daemon
+mysql_daemon: mariadb
+mysql_enablerepo: ""
+
+###############################
+# MySQL daemon & service
+###############################
+# name of the MySQL serv
+
+# port and bind address
+mysql_port: "3306"
+mysql_bind_address: "0.0.0.0"
+
+###############################
+# Logging
+###############################
+# Error log file
+mysql_log_error: /var/log/mysqld.log
+
+# General query log (disabled by default)
+mysql_log: ""
+
+# Slow query log
+mysql_slow_query_log_enabled: false
+mysql_slow_query_log_file: /var/lib/mysql/mysql-slow.log
+mysql_slow_query_time: 2
+
+# Syslog tag used if logging to syslog
+mysql_syslog_tag: mysqld
+
+###############################
+# Configuration files (OS defaults)
+###############################
+mysql_config_file: /etc/my.cnf
+mysql_config_include_dir: /etc/my.cnf.d
+
+###############################
+# Data, socket, pid files
+###############################
+mysql_data_dir: /var/lib/mysql
+mysql_socket: /var/lib/mysql/mysql.sock
+mysql_pid_file: /var/run/mysqld/mysqld.pid
+
+# Binary logs
+mysql_log_bin: /var/lib/mysql/mysql-bin
+
+###############################
+# InnoDB settings
+###############################
+mysql_supports_innodb_large_prefix: true
+
+###############################
+# Users & databases (defaults)
+###############################
+# Root password (secure via vault if needed)
+mysql_root_password: "ChangeMe123!"
+
+# List of additional MySQL users (empty by default)
+mysql_users: []
+
+# List of databases to create
+mysql_databases: []
+
+###############################
+# SSL settings (optional)
+###############################
+mysql_enable_ssl: false
+mysql_ssl_cert: /etc/pki/tls/certs/mysql.crt
+mysql_ssl_key: /etc/pki/tls/private/mysql.key
+mysql_ssl_ca: /etc/pki/tls/certs/ca.crt
+# MySQL socket and PID file
+mysql_socket: /var/lib/mysql/mysql.sock
+mysql_pid_file: /var/run/mysqld/mysqld.pid
+
+# MySQL configuration
+mysql_config_file: /etc/my.cnf
+mysql_config_include_dir: /etc/my.cnf.d
+
+# Logging
+mysql_slow_query_log_file: /var/log/mysql/mysql-slow.log
+mysql_log_error: /var/log/mysql/error.log
+mysql_syslog_tag: mariadb
+
+# Storage engine support
+mysql_supports_innodb_large_prefix: true
+
+# Optional: root password (can be vault-encrypted)
+mysql_root_password: your_root_password_here
+

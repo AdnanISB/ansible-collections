@@ -1,8 +1,8 @@
 [webservers]
-ubuntu-web ansible_host=100.31.140.32 ansible_user=ubuntu 
-ansible_private_key_file=/home/ubuntu/my-ansible-project/adnan_server.pem
+ubuntu-web ansible_host=54.91.34.49 ansible_user=ubuntu 
+ansible_private_key_file=/home/ubuntu/ansible-collections/adnan_server.pem
 
 [dbservers]
-amazon-db ansible_host=100.53.209.145 ansible_user=ec2-user 
-ansible_private_key_file=/home/ubuntu/my-ansible-project/adnan_server.pem
+amazon-db ansible_host=3.95.252.62 ansible_user=ec2-user ansible_private_key_file=/home/ubuntu/ansible-collections/adnan_server.pem
+
 

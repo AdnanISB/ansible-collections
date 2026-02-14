@@ -2,7 +2,7 @@
 - hosts: dbservers
   become: yes
   roles:
-    - geerlingguy.mysql
+    - mysql
 
 - hosts: webservers
   become: yes
