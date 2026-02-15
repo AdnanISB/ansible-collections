@@ -1,42 +1,14 @@
+#SPDX-License-Identifier: MIT-0
 ---
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+    update_cache: yes
 
-- name: Include tasks for CentOS like distributions
-  include_tasks: centos.yml
-  when: ansible_os_family == 'RedHat'
-
-- name: Include tasks for Debian like distributions
-  include_tasks: debian.yml
-  when: ansible_os_family == 'Debian'
-
-- name: Add users to the docker group
-  user:
-    name: "{{ item }}"
-    groups: docker
-    append: yes
-  loop: "{{ docker_users }}"
-
-- name: Create /etc/docker
-  file:
-    path: /etc/docker
-    state: directory
-    mode: '0755'
-
-- name: Configure docker daemon
-  template:
-    src: daemon.json.j2
-    dest: /etc/docker/daemon.json
-    mode: '0644'
-  notify: reload docker daemon
-
-- name: Enable docker daemon
+- name: Ensure Docker service is running
   service:
-    name: "{{ docker_daemon }}"
-    enabled: yes
-  when: docker_enabled | bool
-
-- name: Start docker daemon
-  service:
-    name: "{{ docker_daemon }}"
+    name: docker
     state: started
-  when: docker_started | bool
+    enabled: yes
 
